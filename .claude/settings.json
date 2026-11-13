@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 scripts/content_lint.py --hook",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/content_lint.py\" --hook",
             "description": "Lint content/ files after Claude writes them"
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 scripts/secret_scan.py --hook",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/secret_scan.py\" --hook",
             "description": "Block commits that contain secrets"
           }
         ]
