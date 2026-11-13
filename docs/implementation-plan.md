@@ -1,6 +1,6 @@
 # SEO/GEO Pipeline × Claude Code: Kế hoạch triển khai
 
-**Phiên bản:** v0.2 (chờ chốt các câu hỏi ở Mục 13)
+**Phiên bản:** v0.2 (đã chốt 4 quyết định bên dưới, các câu còn lại ở Mục 13)
 **Ngày:** 13/11/2026
 **Phạm vi:** Template GitHub dùng chung cho quy trình SEO/GEO của Liam's Pod (P01–P07 + Handover), chạy bằng Claude Code, kết nối Google Drive/Sheets/Docs, Agency Analytics, SERP API, Firecrawl, DataforSEO và SE Ranking.
 
@@ -10,6 +10,15 @@
 - Output của skill viết bài theo đúng format Content Doc hiện tại: `Draft_EN` / `Draft_TH`, bảng meta, danh sách xác nhận với khách (Mục 2.3).
 - Forecast giữ đúng công thức của tab Measurement (Mục 2.5).
 - Thêm các rủi ro mới phát hiện: quyền Drive chỉ ở mức xem, và mật khẩu CMS đang lưu dạng plain text trong Sheet (Mục 1).
+
+**Đã chốt (13/11/2026):**
+
+| # | Quyết định | Hệ quả |
+| --- | --- | --- |
+| A1 | Template repo + mỗi khách một repo private `seo-<client>` | Làm `sync-core.sh` ở Phase 1, chuyển sang plugin ở v2 |
+| A2 | Chạy chủ yếu trên web/app claude.ai/code | Dùng connector của org, không cần cấu hình MCP trên từng máy. Health check hằng tuần dùng scheduled task. Mỗi phiên cần bật đủ connector, nên README sẽ có checklist bật connector |
+| B2 | Giữ đúng format Plan 7 tab của The Sukosol | Schema trong repo bám đúng cột hiện có. Không thêm tab mới khi team chưa yêu cầu |
+| E1 | Pilot kép: CWG (P01→P04) + The Sukosol (P05–P06) | Phase 2 thử content trên Sukosol, Phase 3 dựng Plan cho CWG |
 
 ---
 
@@ -602,14 +611,14 @@ Thời gian dưới đây là ước tính, sẽ chỉnh sau khi chốt Mục 13
 Câu ★ là câu đang chặn Phase 0–1. Câu đánh dấu ✅ đã có câu trả lời từ dữ liệu Drive.
 
 **A. Kiến trúc và vận hành**
-- ★A1. Mô hình repo: template + repo riêng cho từng khách, hay một repo chung cho tất cả khách?
-- ★A2. Team chạy Claude Code ở đâu (web claude.ai/code, app desktop hay CLI)? Bao nhiêu người dùng (PIC/JR/INT)?
+- ✅ A1. Template + repo riêng cho từng khách.
+- ✅ A2. Chạy trên web/app claude.ai/code. Còn cần biết: bao nhiêu người dùng (PIC/JR/INT), và tài khoản GitHub của họ có trong org `talabadao` chưa?
 - A3. Có cần tích hợp Asana không (sơ đồ P06a ghi "update status in Asana")? Nếu có thì cài Asana connector.
 
 **B. Google Drive**
 - ✅ Cấu trúc Plan/Masterfile và format Content Doc: đã đọc từ Sukosol và I'Msignia.
 - ★B1. Tài khoản đang kết nối chỉ có quyền **xem** trên các folder mẫu. Folder dự án mới sẽ nằm ở đâu (Shared Drive của team hay My Drive của `analytics@`), và có cấp quyền Editor cho tài khoản chạy Claude không?
-- ★B2. Đồng ý chọn format Sukosol/I'Msignia làm chuẩn template?
+- ✅ B2. Giữ đúng format Plan 7 tab của The Sukosol.
 - B3. Ad-Lib và Bhaya (format cũ) có cần chuyển sang format mới, hay giữ nguyên?
 - B4. Đồng ý chuyển mật khẩu ra khỏi tab SEO Assets và đổi mật khẩu CMS của Sukosol?
 
@@ -631,6 +640,6 @@ Câu ★ là câu đang chặn Phase 0–1. Câu đánh dấu ✅ đã có câu 
 - D6. Những ngôn ngữ nào hay phải dịch? (Đã thấy: Thai, và de/es/fr/ko/zh/vi ở Bhaya.)
 
 **E. Pilot và cổng duyệt**
-- ★E1. Pilot với CWG (dự án mới) + The Sukosol (dự án đang chạy) được không? CWG đã có folder Drive, campaign Agency Analytics và source website chưa?
+- ✅ E1. Pilot CWG + The Sukosol. Còn cần biết: CWG đã có folder Drive, Onboarding Questions, campaign Agency Analytics và source website chưa?
 - E2. Claude được ghi thẳng vào Plan/Masterfile và Doc mà khách đang xem, hay chỉ ghi vào bản nháp nội bộ rồi PIC chép sang?
 - E3. Chốt danh sách Status cho Content Plan (đề xuất ở Mục 7.2).
