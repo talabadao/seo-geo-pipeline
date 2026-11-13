@@ -3,7 +3,7 @@
 
 project:
   name: ""                         # "Example Brand"
-  hop_code: ""                     # "HOP###" (mã dự án nội bộ, dùng tìm folder Drive)
+  code: ""                         # mã dự án nội bộ, tùy agency: "HOP###", "AD##"... (phụ, match theo tên là chính)
   slug: ""                         # "brand"  (dùng cho repo name seo-<slug>)
   domain: ""                       # "example.com"
   industry: ""                     # → core/industries/<industry>.md

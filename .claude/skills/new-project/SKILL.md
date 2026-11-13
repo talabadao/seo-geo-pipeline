@@ -10,32 +10,39 @@ dự án, nên skill này chỉ *tìm và map* file có sẵn, **không tạo** 
 bật bước tạo folder/copy Sheet mẫu (đánh dấu TODO bên dưới).
 
 ## Input
-`/new-project "HOP### - Tên khách" domain.com` (hoặc hỏi user nếu thiếu).
+`/new-project "<Tên khách>" domain.com` — kèm **folder URL/ID** nếu biết (khuyến nghị). Mã dự án
+(HOP###, AD##, ...) tùy agency nên **match theo TÊN khách là chính**, mã là phụ.
 
 ## Các bước
 
-1. **Tìm folder dự án** trong Drive root của agency (folder "New projects"):
-   - `search_files` với `title contains '<Tên khách>'` hoặc `'HOP###'`, mimeType folder.
-   - Lấy `root_folder_id`. Nếu không thấy: báo user chưa có folder, dừng.
-2. **Tìm các file bên trong** (đệ quy qua `parentId`):
-   - Onboarding Sheet (`title contains 'On-Boarding'`) → `onboarding_sheet_id`
-   - Plan Sheet (`title contains 'Plan'`) → `plan_sheet_id`
-   - Masterfile Sheet (`title contains 'Masterfile'`) → `masterfile_sheet_id`
-   - Folder Content / Website Audit / Offsite / UI-UX / Reports → các *_folder_id
-3. **Xác nhận format Plan** = 7 tab chuẩn (Foundation…Measurement). Nếu Plan dùng format cũ
-   (Ad-Lib/Bhaya), báo user và hỏi có chuyển sang chuẩn không (câu hỏi B3).
-4. **Ghi `project/config.yaml`:** điền project.*, languages (từ Onboarding target language),
-   serp_locations, drive.*, analytics.gsc_property (= sc-domain:<domain>). Giữ các ID tìm được.
-5. **Đọc Onboarding** (`read_file_content`) → dựng brand pack nháp trong `project/brand/`:
-   - `brand.md`: định vị, voice (suy từ mô tả business), audience, mùa vụ
-   - `facts.yaml`: số liệu/claim nêu trong Onboarding (mục chưa chắc → `verify:`)
-   - `rules.yaml`: từ/claim cần tránh; chính tả theo thị trường chính
-   - `glossary.csv`: tên brand/sản phẩm giữ nguyên
-   - Đánh dấu rõ phần suy luận cần người xác nhận.
-6. **Lập internal-links.csv**: nếu có tab Site URL hoặc sitemap, lấy URL thật; nếu chưa, để trống
-   và ghi chú chạy `/site-inventory`.
-7. **Báo cáo:** liệt kê ID đã map, phần brand pack còn thiếu, và bước tiếp theo (`/p01-onboarding`
-   để hoàn thiện, hoặc `/p02-access`).
+1. **Tìm folder dự án** — KHÔNG giả định một root duy nhất (các agency/khách nằm ở nhiều nơi):
+   - Nếu user đưa folder URL/ID → dùng thẳng làm `root_folder_id`.
+   - Nếu không: `search_files` `title contains '<Tên khách>'` (và/hoặc mã), mimeType folder, trên cả
+     My Drive lẫn Shared Drive. Nếu ra nhiều kết quả → hỏi user chọn. Nếu 0 → báo chưa có folder, dừng.
+2. **Tìm file/folder con** (đệ quy qua `parentId`). Tên có thể khác nhau giữa dự án:
+   - Thư mục "SEO - GEO" (nếu có) là nơi chứa Plan/Masterfile; nếu không, tìm ngay trong root.
+   - Plan (`title contains 'Plan'`) → `plan_sheet_id`; Masterfile (`contains 'Masterfile'`) →
+     `masterfile_sheet_id`.
+   - Onboarding (`contains 'On-Boarding' | 'Onboarding' | 'Inquiry'`) → `onboarding_sheet_id` (CÓ THỂ
+     KHÔNG TỒN TẠI — xem bước 5 fallback).
+   - Folder Content / Research / Audit / Website Audit / Offsite / UI-UX / Reports → các *_folder_id
+     (map đúng tên folder thật, đừng ép tên).
+3. **Kiểm format Plan** = 7-tab core (Foundation, Problem Pattern(s), Tracking, Content Plan,
+   Technical Baseline, Offsite, Measurement). Dự án có thể thêm tab (Measurement V3, Audit Website...)
+   — chấp nhận, chỉ cảnh báo nếu THIẾU tab core. Format cũ (Ad-Lib/Bhaya) → hỏi có chuẩn hóa không.
+4. **Ghi `project/config.yaml`** (trong repo DỰ ÁN, không phải template): project.* (gồm `code`),
+   languages (từ Foundation/Onboarding target language), serp_locations (từ Foundation Target
+   Location), drive.*, competitors (từ Foundation), analytics.gsc_property = sc-domain:<domain>.
+5. **Nguồn onboarding → brand pack** `project/brand/` (theo thứ tự ưu tiên có gì dùng nấy):
+   - (a) Sheet Onboarding Questions nếu có; (b) **tab Foundation của Plan**; (c) brand guideline trong
+     folder Brand/Report; (d) hỏi user phần còn thiếu.
+   - `brand.md` (định vị, voice, audience, mùa vụ) · `facts.yaml` (số liệu + mục `verify:`) ·
+     `rules.yaml` (từ/claim tránh, chính tả) · `glossary.csv` (tên giữ nguyên).
+   - **Cross-check Foundation vs brand guideline:** chỗ lệch (ví dụ Nam Dinh vs Ninh Binh) đưa vào
+     `facts.yaml › verify:` kèm cả hai nguồn.
+6. **internal-links.csv:** nếu có tab Site URL/sitemap → URL thật; chưa có → để trống, ghi chú chạy
+   `/site-inventory`.
+7. **Báo cáo:** ID đã map, brand pack còn thiếu, xung đột facts cần xác nhận, bước tiếp theo.
 
 ## TODO khi có quyền Editor Drive
 - Copy cây folder + Plan/Masterfile/Onboarding từ "Drive Template" và đặt tên theo quy ước
