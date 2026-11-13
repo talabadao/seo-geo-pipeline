@@ -11,6 +11,12 @@
 - Forecast giữ đúng công thức của tab Measurement (Mục 2.5).
 - Thêm các rủi ro mới phát hiện: quyền Drive chỉ ở mức xem, và mật khẩu CMS đang lưu dạng plain text trong Sheet (Mục 1).
 
+**Phase 1 đã dựng (13/11/2026)** — xem `CLAUDE.md`, `core/`, `.claude/skills/`, `scripts/`:
+backbone (CLAUDE.md + content rules + security), config schema + brand pack .example (khuôn), 7-tab
+sheet-schemas, 22 format (12 velocity travel + 7 infrastructure + 3 authority), 2 playbook ngành,
+markets, content_lint + secret_scan hook (đã test), 7 skill content (new-project, research, outline,
+write, translate, content-month, learn) + 4 subagent, sync-core.sh. Brand pack để dạng .example (không chứa dữ liệu khách); dữ liệu CWG chỉ nằm trong repo dự án private.
+
 **Đã chốt (13/11/2026):**
 
 | # | Quyết định | Hệ quả |

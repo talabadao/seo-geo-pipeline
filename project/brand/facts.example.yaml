@@ -1,0 +1,21 @@
+# facts.example.yaml — KHUÔN MẪU. Copy thành facts.yaml trong repo dự án.
+# Chỉ dữ kiện trong `approved:` mới được dùng thẳng. Mục trong `verify:` BỊ CHẶN khi viết.
+
+approved:
+  tagline: "<tagline đã duyệt>"
+  founded: "<năm, bối cảnh>"
+  # ví dụ cấu trúc (thay bằng số thật của khách, có nguồn):
+  product:
+    example_item:
+      spec: "<thông số thật>"
+      capacity: "<sức chứa/sản lượng thật>"
+  commercial:
+    moq: "<nếu có>"
+    lead_time: "<nếu có>"
+  compliance: {}            # chứng nhận hiện hành + ID
+  contact: "<email/kênh liên hệ công khai của khách>"
+
+# BỊ CHẶN — không khẳng định tới khi được xác nhận (mâu thuẫn/chưa chứng thực)
+verify:
+  example_conflict: "<dữ kiện khác nhau giữa các trang — chốt trước khi dùng>"
+  example_unproven_claim: "<claim chưa có bằng chứng — coi là mục tiêu, không nói như đã đạt>"

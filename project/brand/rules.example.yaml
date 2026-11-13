@@ -1,0 +1,26 @@
+# rules.example.yaml — KHUÔN MẪU. Copy thành rules.yaml trong repo dự án.
+# Siết chặt hơn CLAUDE.md §6; thắng khi mâu thuẫn.
+
+lint:
+  spelling: en-GB            # en-GB | en-US (hoặc bỏ nếu không phải tiếng Anh)
+  banned_words: []           # từ cấm riêng của brand (ngoài bộ cliché mặc định)
+  min_internal_links: 2
+
+off_limits:                  # chủ đề/claim không được xuất hiện khi chưa duyệt
+  - "<ví dụ: giá/đơn giá/so sánh chi phí>"
+  - "<ví dụ: guarantee lead time/capacity cho đơn cụ thể>"
+  - "<ví dụ: claim sustainability quá mức chưa chứng nhận>"
+
+disclaimers:                 # tự chèn theo loại nội dung
+  commercial_terms: "<câu disclaimer điều khoản thương mại>"
+  product_suitability: "<câu disclaimer phù hợp sản phẩm>"
+  certifications: "<câu disclaimer chứng nhận>"
+
+naming:
+  company_first: "<Tên đầy đủ>"
+  company_after: ["the company", "<viết tắt>"]
+  compounds: "<quy ước thuật ngữ ghép>"
+
+superlative_swaps:           # thay cliché bằng dữ kiện cụ thể
+  "state-of-the-art facility": "<số/quy trình cụ thể>"
+  "fast <X>": "<số liệu cụ thể>"

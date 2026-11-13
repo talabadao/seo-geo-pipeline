@@ -2,10 +2,10 @@
 # `/new-project` fills the drive.* and analytics.* IDs automatically.
 
 project:
-  name: ""                         # "Capital World Group"
+  name: ""                         # "Example Brand"
   hop_code: ""                     # "HOP###" (mã dự án nội bộ, dùng tìm folder Drive)
-  slug: ""                         # "cwg"  (dùng cho repo name seo-<slug>)
-  domain: ""                       # "capitalworldgroup.com"
+  slug: ""                         # "brand"  (dùng cho repo name seo-<slug>)
+  domain: ""                       # "example.com"
   industry: ""                     # → core/industries/<industry>.md
   business_model: ""               # leadgen | booking | ecommerce | local
   cms: ""                          # wordpress | shopify | webflow | custom
