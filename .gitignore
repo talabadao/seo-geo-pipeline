@@ -1,0 +1,33 @@
+# ── Secrets & credentials (NEVER commit) ──────────────────────────
+.credentials/*
+!.credentials/README.md
+!.credentials/credentials.example.yaml
+*.key
+*.pem
+*-sa.json              # Google service-account keys
+service-account*.json
+.env
+.env.*
+!.env.example
+
+# ── Website source secrets (when website/ holds a real codebase) ──
+website/**/wp-config.php
+website/**/.env
+website/**/.env.*
+website/wp-content/uploads/
+website/node_modules/
+website/vendor/
+
+# ── Large data snapshots & caches ─────────────────────────────────
+data/cache/
+data/analytics/*.json
+data/serp/*.json
+data/keywords/*.csv
+*.sqlite
+
+# ── Build / tooling ───────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+node_modules/

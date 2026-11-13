@@ -1,0 +1,50 @@
+# project/config.example.yaml — copy to project/config.yaml and fill in.
+# `/new-project` fills the drive.* and analytics.* IDs automatically.
+
+project:
+  name: ""                         # "Capital World Group"
+  hop_code: ""                     # "HOP###" (mã dự án nội bộ, dùng tìm folder Drive)
+  slug: ""                         # "cwg"  (dùng cho repo name seo-<slug>)
+  domain: ""                       # "capitalworldgroup.com"
+  industry: ""                     # → core/industries/<industry>.md
+  business_model: ""               # leadgen | booking | ecommerce | local
+  cms: ""                          # wordpress | shopify | webflow | custom
+  stage: P01                       # bước hiện tại
+  team: { am_pm: "", pic: "", sen: "" }
+
+languages:
+  primary: en-GB                   # → core/markets/en.md
+  secondary: []                    # ví dụ [th-TH] → cột "Keyword (Th)" + "Draft_TH"
+serp_locations: []                 # ["United States", "Thailand"]
+
+drive:                             # Claude điền khi chạy /new-project
+  root_folder_id: ""
+  onboarding_sheet_id: ""
+  plan_sheet_id: ""
+  masterfile_sheet_id: ""
+  content_folder_id: ""
+  website_audit_folder_id: ""
+  offsite_folder_id: ""
+  uiux_folder_id: ""
+  reports_folder_id: ""
+
+analytics:
+  agency_analytics_campaign_id: ""
+  se_ranking_project_id: ""
+  gsc_property: ""                 # "sc-domain:example.com"
+  ga4_property_id: ""
+  gtm_container_id: ""
+  conversion_events: []            # ["generate_lead", "book_now_click"]
+  ai_referrers: [chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com, claude.ai]
+  page_groups: {}                  # { insights: "^/blog/", products: "^/products/" }
+  branded_regex: ""                # "capital world|cwg"
+
+competitors: []                    # domain ưu tiên phân tích (lấy từ Foundation)
+
+content:
+  word_range: [1000, 1800]
+  min_internal_links: 2
+  cta_options: []
+
+budget:
+  dataforseo_usd_per_month: 5      # trần chi phí API mỗi dự án mỗi tháng
